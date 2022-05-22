@@ -3,4 +3,4 @@ project(Sorting_Advance)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(Sorting_Advance main.cpp SortTestHelper.h MergeSort.h InsertionSort.h QuickSort.h QuickSortDealWithIdenticalKeys.h)
+add_executable(Sorting_Advance main.cpp SortTestHelper.h MergeSort.h InsertionSort.h QuickSort.h QuickSortDealWithIdenticalKeys.h QuickSort3Ways.h)
