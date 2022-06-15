@@ -17,14 +17,15 @@ using std::min;
 using std::string;
 using std::swap;
 
-template <typename Item> class MaxHeap {
+template <typename Item>
+class MaxHeap {
 
   private:
     Item *data;
     int count;
     int capacity;
 
-    void ShiftUp( int k ) {
+    void shiftUp( int k ) {
 
         while ( k > 1 && data[ k / 2 ] < data[ k ] ) {
             swap( data[ k / 2 ], data[ k ] );
@@ -32,7 +33,7 @@ template <typename Item> class MaxHeap {
         }
     }
 
-    void ShiftDown( int k ) {
+    void shiftDown( int k ) {
         while ( 2 * k <= count ) {
 
             int j = k * 2;
@@ -51,12 +52,25 @@ template <typename Item> class MaxHeap {
         this->capacity = capacity;
     }
 
+    // Heapify算法复杂度为O(n)
+    MaxHeap( Item arr[], int n ) {
+        data = new Item[ n + 1 ];
+        capacity = n;
+        for ( int i = 0; i < n; ++i )
+            data[ i + 1 ] = arr[ i ];
+        count = n;
+
+        for ( int i = count / 2; i >= 1; --i )
+            shiftDown( i );
+    }
+
     ~MaxHeap() { delete[] data; }
 
     int size() { return count; }
 
     bool isEmpty() { return count == 0; }
 
+    // 将n个元素逐个插入到一个空堆算法复杂度是O(nlogn)
     void insert( Item item ) {
 
         // 这里仅对数组越界问题进行断言处理，更好的方式为动态处理
@@ -64,7 +78,7 @@ template <typename Item> class MaxHeap {
 
         data[ count + 1 ] = item;
         count++;
-        ShiftUp( count );
+        shiftUp( count );
     }
 
     Item extractMax() {
@@ -73,10 +87,17 @@ template <typename Item> class MaxHeap {
 
         Item ret = data[ 1 ];
 
-        swap( data[ 1 ], data[ count + 1 ] );
+        swap( data[ 1 ], data[ count ] );
         count--;
-        ShiftDown( 1 );
+        shiftDown( 1 );
         return ret;
+    }
+
+    Item getMax() {
+
+        assert( count > 0 );
+
+        return data[ 1 ];
     }
 
   public:

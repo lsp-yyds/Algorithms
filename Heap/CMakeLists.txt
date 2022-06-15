@@ -3,4 +3,4 @@ project(Heap)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(Heap main.cpp Heap.h)
+add_executable(Heap main.cpp Heap.h HeapSort.h QuickSort2Ways.h IndexMaxHeap.h)
