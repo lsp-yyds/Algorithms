@@ -1,0 +1,7 @@
+# ninja log v5
+0	452	1655632062962109772	CMakeFiles/Binary_Search_Tree.dir/main.cpp.o	a29227be96ec03b0
+452	523	1655632063034104644	Binary_Search_Tree	e12f4173aed4ebca
+1	435	1655632472609498775	CMakeFiles/Binary_Search_Tree.dir/main.cpp.o	a29227be96ec03b0
+435	514	1655632472689496866	../Binary_Search_Tree	1c7470989f2c5772
+1	1921	1655808970182730199	CMakeFiles/Binary_Search_Tree.dir/main.cpp.o	a29227be96ec03b0
+1921	2194	1655808970454723670	../Binary_Search_Tree	1c7470989f2c5772
