@@ -21,6 +21,13 @@ class BST {
             this->value = value;
             this->left = this->right = NULL;
         }
+
+        Node( Node *node ) {
+            this->key = node->key;
+            this->value = node->value;
+            this->left = node->left;
+            this->right = node->right;
+        }
     };
 
     Node *root;
@@ -94,6 +101,9 @@ class BST {
     void removeMax() {
         if ( root ) root = removeMax( root );
     }
+
+    // 从二叉树中删除键值为key的节点
+    void remove( Key key ) { root = remove( root, key ); }
 
   private:
     Node *insert( Node *node, Key key, Value value ) {
@@ -211,6 +221,52 @@ class BST {
         node->right = removeMax( node->right );
         return node;
     }
+
+    // 删除掉以node为根的二分搜索树中键值为key的节点
+    // 返回删除节点后新的二分搜索树的根
+    Node *remove( Node *node, Key key ) {
+
+        if ( node == NULL ) return NULL;
+
+        if ( key < node->key ) {
+            node->left = remove( node->left, key );
+            return node;
+        } else if ( key < node->key ) {
+            node->right = remove( node->right, key );
+            return node;
+        } else { // key == node->key
+            if ( node->left == NULL ) {
+                Node *rightNode = node->right;
+                delete node;
+                count--;
+                return rightNode;
+            }
+
+            if ( node->right == NULL ) {
+                Node *leftNode = node->left;
+                delete node;
+                count--;
+                return leftNode;
+            }
+
+            // node->left != NULL && node->right != NULL
+            // successor and predecessor
+            Node *successor = new Node( minimum( node->right ) );
+            count++;
+
+            successor->right = removeMin( node->right );
+            successor->left = node->left;
+
+            delete node;
+            count--;
+
+            return successor;
+        }
+    }
+
+    // successor and predecessor
+    // floor and ceil
+    // rank and select
 };
 
 // 测试二分搜索树和顺序查找表之间的性能差距
